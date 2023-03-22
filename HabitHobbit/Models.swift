@@ -27,9 +27,24 @@ struct Activity: Codable, Identifiable {
 }
 
 class Activities: ObservableObject {
-    @Published var activities: [Activity] = []
+    @Published var activities: [Activity] = [] {
+        didSet {
+            if let encoded = try? JSONEncoder().encode(activities) {
+                UserDefaults.standard.set(encoded, forKey: "Activities")
+            }
+        }
+    }
     
-    init() {
-        activities.append(Activity(title: "Sample", description: "This is an example activity.", completions: [Date.now]))
+    init(useDefaultIfNoneLoaded: Bool = false) {
+        if let savedItems = UserDefaults.standard.data(forKey: "Activities") {
+            if let decodedActivities = try? JSONDecoder().decode([Activity].self, from: savedItems) {
+                activities = decodedActivities
+                return
+            }
+        }
+        
+        if useDefaultIfNoneLoaded {
+            activities.append(Activity(title: "Sample", description: "This is an example activity.", completions: [Date.now]))
+        }
     }
 }
