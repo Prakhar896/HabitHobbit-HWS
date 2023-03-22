@@ -16,6 +16,7 @@
 		E2991F4329CAAE8E0006E1BF /* HabitHobbitUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2991F4229CAAE8E0006E1BF /* HabitHobbitUITestsLaunchTests.swift */; };
 		E2991F5029CAAED40006E1BF /* Models.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2991F4F29CAAED40006E1BF /* Models.swift */; };
 		E2991F5229CAB3710006E1BF /* NewActivitySheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2991F5129CAB3710006E1BF /* NewActivitySheet.swift */; };
+		E2991F5429CAD3FD0006E1BF /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2991F5329CAD3FD0006E1BF /* Extensions.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -48,6 +49,7 @@
 		E2991F4229CAAE8E0006E1BF /* HabitHobbitUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HabitHobbitUITestsLaunchTests.swift; sourceTree = "<group>"; };
 		E2991F4F29CAAED40006E1BF /* Models.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Models.swift; sourceTree = "<group>"; };
 		E2991F5129CAB3710006E1BF /* NewActivitySheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewActivitySheet.swift; sourceTree = "<group>"; };
+		E2991F5329CAD3FD0006E1BF /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -102,6 +104,7 @@
 				E2991F2729CAAE8A0006E1BF /* ContentView.swift */,
 				E2991F5129CAB3710006E1BF /* NewActivitySheet.swift */,
 				E2991F4F29CAAED40006E1BF /* Models.swift */,
+				E2991F5329CAD3FD0006E1BF /* Extensions.swift */,
 				E2991F2929CAAE8D0006E1BF /* Assets.xcassets */,
 				E2991F2B29CAAE8D0006E1BF /* Preview Content */,
 			);
@@ -263,6 +266,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E2991F5429CAD3FD0006E1BF /* Extensions.swift in Sources */,
 				E2991F5029CAAED40006E1BF /* Models.swift in Sources */,
 				E2991F5229CAB3710006E1BF /* NewActivitySheet.swift in Sources */,
 				E2991F2829CAAE8A0006E1BF /* ContentView.swift in Sources */,
