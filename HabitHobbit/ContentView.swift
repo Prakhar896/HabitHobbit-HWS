@@ -43,8 +43,13 @@ struct ContentView: View {
             List {
                 if allActivities.activities.count != 0 {
                     ForEach(allActivities.activities) { activity in
-                        ActivityCell(activity: activity)
+                        NavigationLink {
+                            ActivityDetailView(allActivities: allActivities, activityID: activity.id)
+                        } label: {
+                            ActivityCell(activity: activity)
+                        }
                     }
+                    .onDelete(perform: removeRows)
                 } else {
                     Text("No activities created yet!\nHit the '+' button to get started!")
                         .font(.headline.weight(.bold))
@@ -58,13 +63,23 @@ struct ContentView: View {
                 NewActivitySheet(allActivities: allActivities)
             }
             .toolbar {
-                Button {
-                    newActivitySheetIsPresented = true
-                } label: {
-                    Image(systemName: "plus")
+                ToolbarItem(placement: .navigationBarLeading) {
+                    EditButton()
+                }
+                
+                ToolbarItem(placement: .navigationBarTrailing) {
+                    Button {
+                        newActivitySheetIsPresented = true
+                    } label: {
+                        Image(systemName: "plus")
+                    }
                 }
             }
         }
+    }
+    
+    func removeRows(at offsets: IndexSet) {
+        allActivities.activities.remove(atOffsets: offsets)
     }
 }
 
