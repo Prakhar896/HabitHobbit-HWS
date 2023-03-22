@@ -12,6 +12,10 @@ struct ActivityDetailView: View {
     @Environment(\.dismiss) var dismiss
     var activityID: String
     
+    @State var alertIsPresented: Bool = false
+    @State var alertTitle: String = ""
+    @State var alertMessage: String = ""
+    
     var targetActivity: Activity? {
         let targets = allActivities.activities.filter({ $0.id == activityID })
         
@@ -26,41 +30,64 @@ struct ActivityDetailView: View {
     }
     
     var body: some View {
-        if let targetActivity = targetActivity, let targetActivityIndex = targetActivityIndex {
-            List {
-                Section {
-                    Text("\(targetActivity.description)")
-                } header: {
-                    Text("Description")
-                }
-                
-                if targetActivity.completions.count != 0 {
+        ZStack {
+            if let targetActivity = targetActivity, let targetActivityIndex = targetActivityIndex {
+                List {
                     Section {
-                        ForEach(targetActivity.completions, id: \.self) { completionDate in
-                            Text(completionDate.formatted(date: .long, time: .standard))
-                                .font(.system(size: 18, weight: .bold))
-                        }
+                        Text("\(targetActivity.description)")
                     } header: {
-                        Text("Completions")
+                        Text("Description")
+                    }
+                    
+                    if targetActivity.completions.count != 0 {
+                        Section {
+                            ForEach(targetActivity.completions, id: \.self) { completionDate in
+                                Text(completionDate.formatted(date: .long, time: .standard))
+                                    .font(.system(size: 18, weight: .bold))
+                            }
+                            .onDelete(perform: removeCompletionFromActivity)
+                        } header: {
+                            Text("Completions")
+                        }
                     }
                 }
-            }
-            .navigationTitle(targetActivity.title)
-            .toolbar {
-                Button {
-                    withAnimation {
-                        allActivities.activities[targetActivityIndex].completions.insert(Date.now, at: 0)
+                .navigationTitle(targetActivity.title)
+                .toolbar {
+                    Button {
+                        withAnimation {
+                            allActivities.activities[targetActivityIndex].completions.insert(Date.now, at: 0)
+                        }
+                    } label: {
+                        Image(systemName: "checkmark")
                     }
-                } label: {
-                    Image(systemName: "checkmark")
                 }
+            } else {
+                Button("Failed to load that activity. Click here to return back.") {
+                    dismiss()
+                }
+                .navigationTitle("Error occurred.")
             }
-        } else {
-            Button("Failed to load that activity. Click here to return back.") {
+        }
+        .alert(alertTitle, isPresented: $alertIsPresented) {
+            Button("OK") {
                 dismiss()
             }
-            .navigationTitle("Error occurred.")
+        } message: {
+            Text("\(alertMessage)")
         }
+    }
+    
+    func removeCompletionFromActivity(at offsets: IndexSet) {
+        if let targetActivityIndex = targetActivityIndex {
+            withAnimation {
+                allActivities.activities[targetActivityIndex].completions.remove(atOffsets: offsets)
+            }
+            return
+        }
+        
+        alertTitle = "Failed to remove that completion."
+        alertMessage = "An unknown error occured in deleting that completion date for that activity. Please try again."
+        alertIsPresented = true
     }
 }
 
