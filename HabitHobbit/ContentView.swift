@@ -25,7 +25,7 @@ struct ActivityCell: View {
             VStack(spacing: 10) {
                 Text("\(activity.completions.count)")
                     .font(.title3.weight(.heavy))
-                Text("Completion" + (activity.completions.count > 1 ? "s": ""))
+                Text("completion" + (activity.completions.count != 1 ? "s": ""))
                     .font(.callout)
             }
         }
@@ -34,7 +34,7 @@ struct ActivityCell: View {
 }
 
 struct ContentView: View {
-    @StateObject var allActivities = Activities()
+    @StateObject var allActivities = Activities(useDefaultIfNoneLoaded: true)
     
     @State var newActivitySheetIsPresented: Bool = false
     
@@ -63,8 +63,10 @@ struct ContentView: View {
                 NewActivitySheet(allActivities: allActivities)
             }
             .toolbar {
-                ToolbarItem(placement: .navigationBarLeading) {
-                    EditButton()
+                if allActivities.activities.count > 0 {
+                    ToolbarItem(placement: .navigationBarLeading) {
+                        EditButton()
+                    }
                 }
                 
                 ToolbarItem(placement: .navigationBarTrailing) {

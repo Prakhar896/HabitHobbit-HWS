@@ -12,3 +12,13 @@ func numberOfDaysBetween(_ from: Date, and to: Date) -> Int {
         
     return numberOfDays.day!
 }
+
+extension UserDefaults {
+    static func clearAll() {
+        let defaults = standard
+        let dictionary = defaults.dictionaryRepresentation()
+        dictionary.keys.forEach { key in
+            defaults.removeObject(forKey: key)
+        }
+    }
+}

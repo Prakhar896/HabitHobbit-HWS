@@ -39,16 +39,26 @@ struct NewActivitySheet: View {
             }
             .toolbar {
                 Button("Add") {
-                    if title.count == 0 || description.count == 0 {
-                        alertTitle = "One or more values not provided."
-                        alertMessage = "An error occurred as either the title or description, or both, of the activity were not provided."
-                        alertIsPresented = true
-                    } else {
-                        allActivities.activities.append(Activity(title: title, description: description, completions: []))
-                        dismiss()
-                    }
+                    evaluateAndAddActivity()
                 }
             }
+            .onAppear {
+                titleIsFocused = true
+            }
+            .onSubmit {
+                evaluateAndAddActivity()
+            }
+        }
+    }
+    
+    func evaluateAndAddActivity() {
+        if title.count == 0 || description.count == 0 {
+            alertTitle = "One or more values not provided."
+            alertMessage = "An error occurred as either the title or description, or both, of the activity were not provided."
+            alertIsPresented = true
+        } else {
+            allActivities.activities.append(Activity(title: title, description: description, completions: []))
+            dismiss()
         }
     }
 }
