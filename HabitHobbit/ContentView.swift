@@ -34,7 +34,7 @@ struct ActivityCell: View {
 }
 
 struct ContentView: View {
-    @StateObject var allActivities = Activities(useDefaultIfNoneLoaded: true)
+    @StateObject var allActivities = Activities()
     
     @State var newActivitySheetIsPresented: Bool = false
     
