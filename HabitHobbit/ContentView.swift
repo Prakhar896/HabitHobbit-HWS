@@ -8,14 +8,32 @@
 import SwiftUI
 
 struct ContentView: View {
+    @State var activities: [Activity] = []
+    
     var body: some View {
-        VStack {
-            Image(systemName: "globe")
-                .imageScale(.large)
-                .foregroundColor(.accentColor)
-            Text("Hello, world!")
+        NavigationView {
+            List {
+                if activities.count != 0 {
+                    ForEach(activities, id: \.id) { activity in
+                        Text("\(activity.title)")
+                    }
+                } else {
+                    Text("No activities created yet!\nHit the '+' button to get started!")
+                        .font(.headline.weight(.bold))
+                        .padding()
+                        .frame(maxWidth: .infinity)
+                        .multilineTextAlignment(.center)
+                }
+            }
+            .navigationTitle("HabitHobbit")
+            .toolbar {
+                Button {
+                    print("Hello")
+                } label: {
+                    Image(systemName: "plus")
+                }
+            }
         }
-        .padding()
     }
 }
 

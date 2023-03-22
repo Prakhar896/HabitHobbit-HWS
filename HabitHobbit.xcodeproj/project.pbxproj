@@ -14,6 +14,7 @@
 		E2991F3729CAAE8E0006E1BF /* HabitHobbitTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2991F3629CAAE8E0006E1BF /* HabitHobbitTests.swift */; };
 		E2991F4129CAAE8E0006E1BF /* HabitHobbitUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2991F4029CAAE8E0006E1BF /* HabitHobbitUITests.swift */; };
 		E2991F4329CAAE8E0006E1BF /* HabitHobbitUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2991F4229CAAE8E0006E1BF /* HabitHobbitUITestsLaunchTests.swift */; };
+		E2991F5029CAAED40006E1BF /* Models.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2991F4F29CAAED40006E1BF /* Models.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -44,6 +45,7 @@
 		E2991F3C29CAAE8E0006E1BF /* HabitHobbitUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = HabitHobbitUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		E2991F4029CAAE8E0006E1BF /* HabitHobbitUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HabitHobbitUITests.swift; sourceTree = "<group>"; };
 		E2991F4229CAAE8E0006E1BF /* HabitHobbitUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HabitHobbitUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		E2991F4F29CAAED40006E1BF /* Models.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Models.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -96,6 +98,7 @@
 			children = (
 				E2991F2529CAAE8A0006E1BF /* HabitHobbitApp.swift */,
 				E2991F2729CAAE8A0006E1BF /* ContentView.swift */,
+				E2991F4F29CAAED40006E1BF /* Models.swift */,
 				E2991F2929CAAE8D0006E1BF /* Assets.xcassets */,
 				E2991F2B29CAAE8D0006E1BF /* Preview Content */,
 			);
@@ -257,6 +260,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E2991F5029CAAED40006E1BF /* Models.swift in Sources */,
 				E2991F2829CAAE8A0006E1BF /* ContentView.swift in Sources */,
 				E2991F2629CAAE8A0006E1BF /* HabitHobbitApp.swift in Sources */,
 			);
