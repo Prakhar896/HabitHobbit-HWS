@@ -7,9 +7,13 @@
 
 import Foundation
 
-struct Activity: Codable {
+struct Activity: Codable, Identifiable {
     var id = UUID().uuidString
     var title: String
     var description: String
     var completions: [Date]
+}
+
+class Activities: ObservableObject {
+    @Published var activities: [Activity] = []
 }

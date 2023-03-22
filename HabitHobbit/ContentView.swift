@@ -8,13 +8,15 @@
 import SwiftUI
 
 struct ContentView: View {
-    @State var activities: [Activity] = []
+    @StateObject var allActivities = Activities()
+    
+    @State var newActivitySheetIsPresented: Bool = false
     
     var body: some View {
         NavigationView {
             List {
-                if activities.count != 0 {
-                    ForEach(activities, id: \.id) { activity in
+                if allActivities.activities.count != 0 {
+                    ForEach(allActivities.activities) { activity in
                         Text("\(activity.title)")
                     }
                 } else {
@@ -26,9 +28,12 @@ struct ContentView: View {
                 }
             }
             .navigationTitle("HabitHobbit")
+            .sheet(isPresented: $newActivitySheetIsPresented) {
+                NewActivitySheet(allActivities: allActivities)
+            }
             .toolbar {
                 Button {
-                    print("Hello")
+                    newActivitySheetIsPresented = true
                 } label: {
                     Image(systemName: "plus")
                 }
